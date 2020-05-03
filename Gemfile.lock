@@ -112,6 +112,7 @@ GEM
     coffee-script-source (1.12.2)
     concurrent-ruby (1.1.5)
     crass (1.0.4)
+    database_cleaner (1.8.4)
     devise (4.7.1)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -438,7 +439,9 @@ DEPENDENCIES
   aws-sdk (~> 2.3)
   bootsnap
   byebug
+  capybara (>= 2.15)
   coffee-rails (~> 4.2)
+  database_cleaner
   factory_bot_rails
   jbuilder (~> 2.5)
   listen (>= 3.0.5, < 3.2)
@@ -451,6 +454,7 @@ DEPENDENCIES
   rails-erd
   rspec-rails
   rubocop-airbnb
+  rubocop-rspec
   sass-rails (~> 5.0)
   solidus (~> 2.9.0)
   solidus_auth_devise
