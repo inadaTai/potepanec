@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-RSpec.feature "商品(Producut)に関するfeatureテスト", type: :feature do
-  describe "Producuts Controllerに関するテスト" do
+RSpec.feature "商品(Product)に関するfeatureテスト", type: :feature do
+  describe "Products Controllerに関するテスト" do
     let!(:product) { create(:product) }
 
     before do
