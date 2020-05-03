@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe "商品(product)に関するrequestテスト", type: :request do
-  describe "Producutsに関するテスト" do
+  describe "GET /potepan/products/showに関するテスト" do
     let!(:product) { create(:product) }
 
     before do
