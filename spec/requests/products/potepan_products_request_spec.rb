@@ -15,5 +15,12 @@ RSpec.describe "商品(product)に関するrequestテスト", type: :request do
     it "商品(product)のデータが表示されている" do
       expect(response.body).to include product.name
     end
+
+    describe "GET /potepan/cart_page" do
+      it "カートページへアクセスできる確認のテスト" do
+        get potepan_cart_page_path
+        expect(response).to have_http_status(:success)
+      end
+    end
   end
 end
