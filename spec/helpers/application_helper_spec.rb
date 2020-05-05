@@ -10,7 +10,7 @@ RSpec.describe "ApplicationHelperに関するhelperテスト", type: :helper do
       expect(helper.full_title(nil)).to eq('BIGBAG Store')
     end
 
-    it "ページタイトルが入っている時のテスト(titleはTestと代入)" do
+    it "ページタイトルが入っている時のテスト" do
       expect(helper.full_title('Test')).to eq('Test - BIGBAG Store')
     end
   end
