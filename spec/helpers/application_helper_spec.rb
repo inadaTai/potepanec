@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "ApplicationHelperに関するhelperテスト", type: :helper do
+RSpec.describe "ApplicationHelper", type: :helper do
   describe "#full_titleメソッドに関するテスト" do
     it "ページタイトルが空欄の時テスト" do
       expect(helper.full_title(' ')).to eq('BIGBAG Store')

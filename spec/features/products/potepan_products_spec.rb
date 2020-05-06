@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature "商品(Product)に関するfeatureテスト", type: :feature do
+RSpec.feature "Potepan::ProductsController", type: :feature do
   describe "Products Controllerに関するテスト" do
     let!(:product) { create(:product) }
 
