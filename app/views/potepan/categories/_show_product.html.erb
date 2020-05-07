@@ -1,0 +1,17 @@
+<div class="row">
+  <% @taxon_products.each do |product| %>
+    <div class="col-sm-4 col-xs-12">
+      <div class="productBox">
+        <div class="productImage clearfix">
+          <%= image_tag product.display_image.attachment.url  %>
+        </div>
+        <div class="productCaption clearfix">
+          <%= link_to potepan_product_path(product.id) do %>
+            <h5><%= product.name %></h5>
+            <h3><%= product.display_price %></h3>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
