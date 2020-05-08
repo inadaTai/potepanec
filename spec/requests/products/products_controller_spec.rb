@@ -2,7 +2,9 @@ require 'rails_helper'
 
 RSpec.describe "Potepan::ProductsController", type: :request do
   describe "GET /potepan/products/${product_id}" do
-    let!(:product) { create(:product) }
+    let!(:taxonomy) { create(:taxonomy, name: "categories") }
+    let!(:taxon) { create(:taxon, name: "Mugs", taxonomy: taxonomy) }
+    let!(:product) { create(:product, name: "Mug_cup", price: "10.00", taxons: [taxon]) }
 
     before do
       get potepan_product_path product.id
