@@ -5,7 +5,9 @@ RSpec.describe "Potepan::CategoriesController", type: :feature do
     let!(:taxonomy) { create(:taxonomy, name: "categories") }
     let!(:taxon) { create(:taxon, name: "Mugs", taxonomy: taxonomy) }
     let!(:product) { create(:product, name: "Mug_cup", price: "10.00", taxons: [taxon]) }
-    let!(:other_product) { create(:product, name: "Mug_cup_nil", price: "11.00", tax_category_id: nil) }
+    let!(:other_product) do
+      create(:product, name: "Mug_cup_nil", price: "11.00", tax_category_id: nil)
+    end
 
     before do
       visit potepan_category_path taxon.id

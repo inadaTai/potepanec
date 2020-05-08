@@ -6,7 +6,6 @@ RSpec.feature "Potepan::ProductsController", type: :feature do
     let!(:taxon) { create(:taxon, name: "Mugs", taxonomy: taxonomy) }
     let!(:product) { create(:product, name: "Mug_cup", price: "10.00", taxons: [taxon]) }
 
-
     before do
       visit potepan_product_path product.id
     end
