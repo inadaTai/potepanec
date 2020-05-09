@@ -5,6 +5,7 @@ RSpec.describe "Potepan products", type: :feature do
     let!(:taxonomy) { create(:taxonomy, name: "categories") }
     let!(:taxon) { create(:taxon, name: "Mugs", taxonomy: taxonomy) }
     let!(:product) { create(:product, name: "Mug_cup", price: "10.00", taxons: [taxon]) }
+    let!(:taxonomies) { taxon.move_to_child_of(taxonomy.root) }
     let!(:other_product) do
       create(:product, name: "Mug_cup_nil", price: "11.00", tax_category_id: nil)
     end

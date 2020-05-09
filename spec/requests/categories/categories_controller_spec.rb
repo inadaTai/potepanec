@@ -5,6 +5,7 @@ RSpec.describe "Potepan::CategoriesController", type: :request do
     let!(:taxonomy) { create(:taxonomy, name: "categories") }
     let!(:taxon) { create(:taxon, name: "Mugs", taxonomy: taxonomy) }
     let!(:product) { create(:product, name: "Mug_cup", price: "10.00", taxons: [taxon]) }
+    let!(:taxonomies) { taxon.move_to_child_of(taxonomy.root) }
 
     before do
       get potepan_category_path taxon.id
