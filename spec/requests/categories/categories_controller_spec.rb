@@ -14,9 +14,10 @@ RSpec.describe "Potepan::CategoriesController", type: :request do
       expect(response).to have_http_status(:success)
     end
 
-    it "分類(taxonomyとtaxon)のデータが表示されている" do
+    it "分類(taxonomyとtaxon)と商品のデータが表示されている" do
       expect(response.body).to include taxonomy.name
       expect(response.body).to include taxon.name
+      expect(response.body).to include product.name
     end
   end
 end
