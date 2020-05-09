@@ -9,10 +9,18 @@
           <%= render 'picture_slider', product: @product %>
           <div class="media-body">
             <ul class="list-inline">
-              <% unless @product.taxons.first.blank? %>
-                <li><%= link_to potepan_category_path(@product.taxons.first.id) do %><i class="fa fa-reply" aria-hidden="true"></i>一覧ページへ戻る<% end %></li>
+              <% if @product.taxons.first.present? %>
+                <li>
+                  <%= link_to potepan_category_path(@product.taxons.first.id) do %>
+                    <i class="fa fa-reply" aria-hidden="true"></i>一覧ページへ戻る
+                  <% end %>
+                </li>
               <% else %>
-                <li><%= link_to potepan_path do %><i class="fa fa-reply" aria-hidden="true"></i>TOPへ戻る<% end %></li>
+                <li>
+                  <%= link_to potepan_path do %>
+                    <i class="fa fa-reply" aria-hidden="true"></i>TOPへ戻る
+                  <% end %>
+                </li>
               <% end %>
               <!-- <li><a href="#"><i class="fa fa-plus" aria-hidden="true"></i>Share This</a></li> -->
             </ul>
