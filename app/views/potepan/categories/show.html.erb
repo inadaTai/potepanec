@@ -5,13 +5,13 @@
   <div class="container">
     <div class="row">
       <div class="col-md-3 col-sm-4 col-xs-12 sideBar">
-        <%= render partial: 'sidebar_categories', locals: { taxonomies: @taxonomies } %>
+        <%= render 'sidebar_categories', taxonomies: @taxonomies %>
         <%= render 'sidebar_color' %>
         <%= render 'sidebar_size' %>
       </div>
       <div class="col-md-9 col-sm-8 col-xs-12">
         <%= render 'filter_area' %>
-        <%= render partial: 'show_product', locals: { taxon_products: @taxon_products } %>
+        <%= render 'show_product', taxon_products: @taxon_products %>
       </div>
     </div>
   </div>

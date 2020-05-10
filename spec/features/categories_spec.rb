@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Potepan categories", type: :feature do
+RSpec.describe "Categories", type: :feature do
   describe "カテゴリページに関するテスト" do
     let!(:taxonomy) { create(:taxonomy, name: "Categories") }
     let!(:taxon) { create(:taxon, name: "Mugs", taxonomy: taxonomy) }
@@ -14,19 +14,19 @@ RSpec.describe "Potepan categories", type: :feature do
       visit potepan_category_path taxon.id
     end
 
-    it "カテゴリーページにアクセスしカテゴリ名(taxonomy)とカテゴリ商品名(taxon)が出ているか確認のテスト" do
+    it "カテゴリーページにアクセスしカテゴリ名とカテゴリ商品名が出ている" do
       expect(page).to have_title "#{taxon.name} - BIGBAG Store"
       expect(page).to have_content taxonomy.name
       expect(page).to have_content "Mugs(1)"
       expect(page).to have_content "Bags(1)"
     end
 
-    it "現在のカテゴリ商品ページで他のカテゴリ商品が出ていないことを確認するテスト" do
+    it "現在のカテゴリ商品ページで他のカテゴリ商品が出ていないことを確認" do
       expect(page).to have_content "Mug_cup"
       expect(page).not_to have_content "Rubybag"
     end
 
-    it "商品をクリックした時に商品の詳細ページにアクセスできているか確認のテスト" do
+    it "商品をクリックした時に商品の詳細ページにアクセス可能" do
       click_on "Mug_cup"
       expect(page).to have_current_path potepan_product_path product.id
       expect(page).to have_content product.name
