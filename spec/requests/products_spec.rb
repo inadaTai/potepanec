@@ -2,8 +2,8 @@ require 'rails_helper'
 
 RSpec.describe "Products", type: :request do
   describe "GET /potepan/products/${product_id}" do
-    let!(:taxonomy) { create(:taxonomy, name: "categories") }
-    let!(:taxon) { create(:taxon, name: "Mugs", taxonomy: taxonomy) }
+    let!(:taxonomy) { create(:taxonomy, name: "Categories") }
+    let!(:taxon) { create(:taxon, name: "Mugs", taxonomy: taxonomy, parent_id: taxonomy.root.id) }
     let!(:product) { create(:product, name: "Mug_cup", price: "10.00", taxons: [taxon]) }
 
     before do

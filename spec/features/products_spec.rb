@@ -2,10 +2,9 @@ require 'rails_helper'
 
 RSpec.describe "Products", type: :feature do
   describe "商品詳細ページに関するテスト" do
-    let!(:taxonomy) { create(:taxonomy, name: "categories") }
-    let!(:taxon) { create(:taxon, name: "Mugs", taxonomy: taxonomy) }
+    let!(:taxonomy) { create(:taxonomy, name: "Categories") }
+    let!(:taxon) { create(:taxon, name: "Mugs", taxonomy: taxonomy, parent_id: taxonomy.root.id) }
     let!(:product) { create(:product, name: "Mug_cup", price: "10.00", taxons: [taxon]) }
-    let!(:taxonomies) { taxon.move_to_child_of(taxonomy.root) }
     let!(:other_product) do
       create(:product, name: "Mug_cup_nil", price: "11.00", tax_category_id: nil)
     end

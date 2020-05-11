@@ -2,10 +2,9 @@ require 'rails_helper'
 
 RSpec.describe "Categories", type: :request do
   describe "GET /potepan/categories/${taxon_id}" do
-    let!(:taxonomy) { create(:taxonomy, name: "categories") }
-    let!(:taxon) { create(:taxon, name: "Mugs", taxonomy: taxonomy) }
+    let!(:taxonomy) { create(:taxonomy, name: "Categories") }
+    let!(:taxon) { create(:taxon, name: "Mugs", taxonomy: taxonomy, parent_id: taxonomy.root.id) }
     let!(:product) { create(:product, name: "Mug_cup", price: "10.00", taxons: [taxon]) }
-    let!(:taxonomies) { taxon.move_to_child_of(taxonomy.root) }
 
     before do
       get potepan_category_path taxon.id

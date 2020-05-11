@@ -11,7 +11,9 @@
       </div>
       <div class="col-md-9 col-sm-8 col-xs-12">
         <%= render 'filter_area' %>
-        <%= render 'show_product', taxon_products: @taxon_products %>
+        <div class="row">
+          <%= render partial: 'product', collection: @taxon_products %>
+        </div>
       </div>
     </div>
   </div>

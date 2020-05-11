@@ -2,21 +2,8 @@
   <div class="panel-heading">商品カテゴリー</div>
   <div class="panel-body">
     <div class="collapse navbar-collapse navbar-ex1-collapse navbar-side-collapse">
-      <ul class="nav navbar-nav side-nav">
-        <% taxonomies.each do |taxonomy| %>
-          <li>
-            <a href="javascript:;" data-toggle="collapse" data-target="#category-<%= taxonomy.id %>"><%= taxonomy.name %><i class="fa fa-plus"></i></a>
-            <ul id="category-<%= taxonomy.id %>" class="collapse collapseItem">
-            <% taxonomy.root.leaves.each do |taxon| %>
-              <li>
-                <%= link_to potepan_category_path(taxon.id) do %>
-                  <i class="fa fa-caret-right" aria-hidden="true"></i><%= taxon.name %><span>(<%= taxon.all_products.count %>)</span>
-                <% end %>
-              </li>
-            <% end %>
-            </ul>
-          </li>
-        <% end %>
+      <ul id="category-list" class="nav navbar-nav side-nav">
+        <%= render partial: 'taxonomy', collection: taxonomies %>
       </ul>
     </div>
   </div>
