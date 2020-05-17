@@ -2,8 +2,8 @@
 <!-- MAIN CONTENT SECTION -->
 <section class="mainContent cleatfix">
   <div class="container">
-    <%= render 'popular_categories' %>
-    <%= render 'new_products' %>
+    <%= render 'popular_categories', hot_taxons: @hot_taxons %>
+    <%= render 'new_products', new_products: @new_products %>
   </div>
 </section>
 <!-- LIGHT SECTION -->

@@ -1,0 +1,11 @@
+<%= link_to potepan_category_path(hot_taxon.id) do %>
+<div class="thumbnail" onclick="location.href='single_product.html';">
+  <div class="imageWrapper">
+    <%= image_tag(hot_taxon.icon.url(:large), :alt => "feature-collection-image") %>
+    <div class="masking"><span class="btn viewBtn"><%= "View #{hot_taxon.name}" %></span></div>
+  </div>
+  <div class="caption">
+    <h4><%= hot_taxon.name %></h4>
+  </div>
+  <% end %>
+</div>
