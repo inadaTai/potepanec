@@ -1,11 +1,15 @@
 <div class="panel panel-default filterNormal">
   <div class="panel-heading">サイズから探す</div>
   <div class="panel-body">
-    <ul class="list-unstyled clearfix">
-      <li><a href="#">S<span>(15)</span></a></li>
-      <li><a href="#">M<span>(10)</span></a></li>
-      <li><a href="#">L<span>(7)</span></a></li>
-      <li><a href="#">XL<span>(12)</span></a></li>
+    <ul id="size-list" class="list-unstyled clearfix">
+      <% option_type.value_name("Size").each do |size| %>
+        <li>
+          <%= link_to potepan_category_path(filter_taxon.id, size: size) do %>
+            <%= size %>
+            <%= tag.span "(#{ProductSearchForm.new(taxon: filter_taxon, size: size).search.unscope(:includes, :order).size.length})" %>
+          <% end %>
+        </li>
+      <% end %>
     </ul>
   </div>
 </div>

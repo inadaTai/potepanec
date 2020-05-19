@@ -2,11 +2,14 @@
   <div class="panel-heading">色から探す</div>
   <div class="panel-body">
     <ul class="list-unstyled">
-      <li><a href="#">ブラック<span>(15)</span></a></li>
-      <li><a href="#">ホワイト<span>(10)</span></a></li>
-      <li><a href="#">レッド<span>(7)</span></a></li>
-      <li><a href="#">ブルー<span>(12)</span></a></li>
-      <li><a href="#">オレンジ<span>(12)</span></a></li>
+      <% option_type.value_name("Color").each do |color| %>
+        <li>
+          <%= link_to potepan_category_path(filter_taxon.id, color: color) do %>
+            <%= color %>
+            <%= tag.span "(#{ProductSearchForm.new(taxon: filter_taxon, color: color).search.unscope(:includes, :order).size.length})" %>
+          <% end %>
+        </li>
+      <% end %>
     </ul>
   </div>
 </div>

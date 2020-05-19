@@ -6,13 +6,13 @@
     <div class="row">
       <div class="col-md-3 col-sm-4 col-xs-12 sideBar">
         <%= render 'sidebar_categories', taxonomies: @taxonomies %>
-        <%= render 'sidebar_color' %>
-        <%= render 'sidebar_size' %>
+        <%= render 'sidebar_color', option_type: @option_type, filter_taxon: @taxon %>
+        <%= render 'sidebar_size', option_type: @option_type, filter_taxon: @taxon %>
       </div>
       <div class="col-md-9 col-sm-8 col-xs-12">
         <%= render 'filter_area' %>
         <div class="row">
-          <%= render partial: 'product', collection: @taxon_products %>
+          <%= render partial: 'product', collection: @products %>
         </div>
       </div>
     </div>

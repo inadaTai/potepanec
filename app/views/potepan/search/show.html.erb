@@ -1,0 +1,15 @@
+<% provide(:title, "Search") %>
+<% provide(:page_title, "#{@word}") %>
+<!-- MAIN CONTENT SECTION -->
+<section class="mainContent clearfix productsContent">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-9 col-sm-8 col-xs-12">
+        <div class="row" id="row-product-display">
+          <%= tag.h4("'#{@word}' に該当する商品が見つかりませんでした") if @products.blank? %>
+          <%= render partial: 'potepan/categories/product', collection: @products %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

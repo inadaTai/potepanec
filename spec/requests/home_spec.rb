@@ -2,11 +2,11 @@ require 'rails_helper'
 
 RSpec.describe "Home", type: :request do
   describe "GET /potepan" do
-    let!(:old_product) { create(:product, name: "old_Bags", available_on: 1.year.ago) }
-    let!(:new_product) { create(:product, name: "Bags1", available_on: Time.current.year) }
-    let!(:new_product2) { create(:product, name: "Bags2", available_on: Time.current.year) }
-    let!(:new_product3) { create(:product, name: "Bags3",  available_on: Time.current.year) }
-    let!(:new_product4) { create(:product, name: "Bags4",  available_on: Time.current.year) }
+    let!(:old_product) { create(:product, name: "old_Bags", available_on: 5.year.ago) }
+    let!(:new_product) { create(:product, name: "Bags1", available_on: 1.year.ago) }
+    let!(:new_product2) { create(:product, name: "Bags2", available_on: 1.year.ago) }
+    let!(:new_product3) { create(:product, name: "Bags3",  available_on: 1.year.ago) }
+    let!(:new_product4) { create(:product, name: "Bags4",  available_on: 1.year.ago) }
     let!(:hot_taxon) do
       create(:taxon,
         name: "Game",
