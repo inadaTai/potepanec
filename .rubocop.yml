@@ -1,5 +1,13 @@
 require: rubocop-rspec
 
+# Rails用に最適化
+Rails:
+  Enabled: true
+
+# 文字数の上限を100文字から変更
+LineLength:
+  Max: 150
+
 inherit_from:
   - .rubocop_airbnb.yml
 #rubocopで検証したくないフォルダを指定
@@ -16,3 +24,5 @@ AllCops:
     - 'vendor/**/*'
     - 'path/ruby'
     - 'spec/*'
+    - 'app/models/potepan/product_decorator.rb'
+    - 'app/models/potepan/option_type_decorator.rb'

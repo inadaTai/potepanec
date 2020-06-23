@@ -6,12 +6,17 @@ RSpec.describe "Categories", type: :feature do
     let!(:taxon) { create(:taxon, name: "Mugs", taxonomy: taxonomy, parent_id: taxonomy.root.id) }
     let!(:taxon2) { create(:taxon, name: "Bags", taxonomy: taxonomy, parent_id: taxonomy.root.id) }
     let!(:product) { create(:product, name: "Mug_cup", price: "10.00", variants: [red_and_small_variant], available_on: 1.year.ago, taxons: [taxon]) }
-    let!(:old_product) { create(:product, name: "Old_cup", price: "11.00", variants: [other_variant], available_on: 5.year.ago, taxons: [taxon]) }
-    let!(:product2) { create(:product, name: "Rubybag", price: "11.00", variants: [other_variant], taxons: [taxon2]) }
+    let!(:option_color) { create(:option_type, presentation: "Color") }
+    let!(:old_product) do
+      create(:product, name: "Old_cup", price: "11.00", variants: [other_variant], available_on: 5.year.ago,
+                       taxons: [taxon])
+    end
+    let!(:product2) do
+      create(:product, name: "Rubybag", price: "11.00", variants: [other_variant], taxons: [taxon2])
+    end
     let!(:value_color) do
       create(:option_value, name: "Red", presentation: "Red", option_type: option_color)
     end
-    let!(:option_color) { create(:option_type, presentation: "Color") }
     let!(:value_size) do
       create(:option_value, name: "Small", presentation: "S", option_type: option_size)
     end
@@ -65,9 +70,9 @@ RSpec.describe "Categories", type: :feature do
         end
         click_link "S"
       end
-        expect(page).to have_content product.name
-        expect(page).not_to have_content product2.name
-      end
+      expect(page).to have_content product.name
+      expect(page).not_to have_content product2.name
+    end
 
     it "商品表示の変更を確認" do
       within "#guiest_id1" do

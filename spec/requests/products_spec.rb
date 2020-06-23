@@ -26,9 +26,9 @@ RSpec.describe "Products", type: :request do
       expect(response.body).not_to include unrelated_product.name
     end
 
-    describe "GET /potepan/cart_page" do
+    describe "GET /potepan/cart" do
       it "カートページへアクセス可能" do
-        get potepan_cart_page_path
+        get potepan_cart_path
         expect(response).to have_http_status(:success)
       end
     end

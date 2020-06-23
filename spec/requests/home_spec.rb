@@ -8,18 +8,16 @@ RSpec.describe "Home", type: :request do
     let!(:new_product3) { create(:product, name: "Bags3",  available_on: 1.year.ago) }
     let!(:new_product4) { create(:product, name: "Bags4",  available_on: 1.year.ago) }
     let!(:hot_taxon) do
-      create(:taxon,
-        name: "Game",
-        meta_keywords: "popularity",
-        icon: File.new("#{Rails.root}/spec/files/test.png"))
+      create(:taxon, name: "Game", meta_keywords: "popularity",
+                     icon: File.new("#{Rails.root}/spec/files/test.png"))
     end
     let!(:no_hot_taxon) { create(:taxon, name: "no_hot_Bags", meta_keywords: "Bag") }
 
     before do
-      get potepan_path
+      get potepan_root_path
     end
 
-    it "potepan_pathにアクセス可能" do
+    it "potepan_root_pathにアクセス可能" do
       expect(response).to have_http_status(:success)
     end
 

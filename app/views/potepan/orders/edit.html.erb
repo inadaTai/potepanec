@@ -1,0 +1,69 @@
+<% provide(:title, "Cart Page") %>
+<% provide(:page_title, "Cart Page") %>
+<%= render 'light_section' %>
+<!-- MAIN CONTENT SECTION -->
+<section class="mainContent clearfix cartListWrapper">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="cartListInner">
+          <% if @order.line_items.empty? %>
+            <%= render 'empty_cart' %>
+          <% else %>
+            <%= tag.h5(flash[:error], class: "alert alert-danger") if flash[:error].present? %>
+            <%= form_for [:potepan, @order], html: { id: "update-cart" } do |order_form| %>
+              <div class="table-responsive">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th></th>
+                      <th>商品名</th>
+                      <th>価格（税抜）</th>
+                      <th>数</th>
+                      <th>小計（税抜）</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% @order.line_items.each do |item| %>
+                      <%= order_form.fields_for :line_items, item do |item_form| %>
+                      <tr class="lineitem <%= "lineitem-#{item.id}" %>">
+                        <td class="col-xs-2">
+                          <%= link_to potepan_line_item_path(item), method: :delete, class: "close", remote: true do %>
+                            <span aria-hidden="true">&times;</span>
+                          <% end %>
+                          <span class="cartImage"><%= image_tag(item.variant.gallery.images.first.url(:mini), alt: 'image') if item.variant.gallery.images.first.try(:url, :mini) %></span>
+                        </td>
+                        <td class="col-xs-4"><%= link_to line_item_name(item), potepan_product_path(item.product.id), class: "cart-product-name" %></td>
+                        <td class="col-xs-2"><%= Spree::Money.parse((item.total_excluding_vat / item.quantity)) %></td>
+                        <td class="col-xs-2"><%= item_form.select :quantity, item.variant.selectable_quantity %></td>
+                        <td class="col-xs-2"><%= item.display_total_excluding_vat %></td>
+                      </tr>
+                      <% end %>
+                    <% end %>
+                  </tbody>
+                </table>
+              </div>
+              <div class="updateArea">
+                <%= order_form.submit "アップデート", class: "btn", id: "update-button" %>
+              </div>
+              <div class="totalAmountArea">
+                <div class="col-sm-4 col-sm-offset-8 col-xs-12">
+                  <ul class="list-unstyled">
+                    <li>小計 <span id="subtotal-cart"><%= Spree::Money.parse(@order.item_total_excluding_vat) %></span></li>
+                    <li>消費税 <span id="tax-amount"><%= @order.display_included_tax_total %></span></li>
+                    <li>総計 <span class="grandTotal"><%= @order.display_total %></span></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="checkBtnArea">
+                <%= button_tag name: "checkout", class: "btn btn-primary btn-block", id: "purchase", aria: { hidden: true } do %>
+                  購入する<i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
+                <% end %>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -4,10 +4,9 @@ Rails.application.routes.draw do
   # If you would like to change where this engine is mounted, simply change the :at option to something different.
   #
   # We ask that you don't use the :as option here, as Solidus relies on it being the default of "spree"
-  mount Spree::Core::Engine, at: '/'
+  mount Spree::Core::Engine, at: "/"
 
   namespace :potepan do
-    get '/',                        to: 'home#index'
     get 'index',                    to: 'sample#index'
     get :product_grid_left_sidebar, to: 'sample#product_grid_left_sidebar'
     get :product_list_left_sidebar, to: 'sample#product_list_left_sidebar'
@@ -24,9 +23,15 @@ Rails.application.routes.draw do
     get :about_us,                  to: 'sample#about_us'
     get :tokushoho,                 to: 'sample#tokushoho'
     get :privacy_policy,            to: 'sample#privacy_policy'
-    get :search, to: 'search#show'
+    get :search,                    to: 'search#show'
+    get '/checkout/:state',         to: 'checkout#edit', as: :checkout_state
+    patch '/checkout/update/:state', to: 'checkout#update', as: :update_checkout
+    root 'home#index'
     resources :products,            only: [:show]
     resources :categories,          only: [:show]
+    resources :orders,              only: [:show, :create, :edit, :update]
+    resources :line_items,          only: [:destroy]
+    get :cart,                      to: 'orders#edit'
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

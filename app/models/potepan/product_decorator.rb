@@ -18,16 +18,16 @@ module Potepan::ProductDecorator
     base.scope :old_products,    -> { order(available_on: :asc) }
     base.scope :sort_by_order,   -> (sort) do
       case sort
-        when "NEW_PRODUCTS"
-          reorder(nil).new_products
-        when "OLD_PRODUCTS"
-          reorder(nil).old_products
-        when "LOW_PRICE"
-          unscope(:order).ascend_by_master_price
-        when "HIGH_PRICE"
-          unscope(:order).descend_by_master_price
+      when "NEW_PRODUCTS"
+        reorder(nil).new_products
+      when "OLD_PRODUCTS"
+        reorder(nil).old_products
+      when "LOW_PRICE"
+        unscope(:order).ascend_by_master_price
+      when "HIGH_PRICE"
+        unscope(:order).descend_by_master_price
         end
-      end
+    end
 
     base.scope :with_images_and_prices, -> { includes(master: [:images, :default_price]) }
 
@@ -36,7 +36,7 @@ module Potepan::ProductDecorator
       regexp = "%#{words.strip.gsub(/[ 　\t]+/, "%")}%"
       products = []
       products << where("name LIKE :this OR description LIKE :this", this: regexp).with_images_and_prices
-      regexp_words = words.split(/[ 　\t]/).map{ |a| "%#{a.strip}%" }.each do |word|
+      regexp_words = words.split(/[ 　\t]/).map { |a| "%#{a.strip}%" }.each do |word|
         return if products.length > MAX_SEARCH_PRODUCT_DISPLAY
         limit_number = MAX_SEARCH_PRODUCT_DISPLAY - products.length.to_i
         exclusion_ids = products.flatten.map(&:id).uniq

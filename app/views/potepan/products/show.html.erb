@@ -17,7 +17,7 @@
                 </li>
               <% else %>
                 <li>
-                  <%= link_to potepan_path do %>
+                  <%= link_to potepan_root_path do %>
                     <i class="fa fa-reply" aria-hidden="true"></i>TOPへ戻る
                   <% end %>
                 </li>
@@ -27,22 +27,7 @@
             <h2><%= @product.name %></h2>
             <h3><%= @product.display_price %></h3>
             <p><%= @product.description %></p>
-            <span class="quick-drop">
-              <select name="guiest_id3" id="guiest_id3" class="select-drop">
-                <option value="0">S</option>
-                <option value="1">M</option>
-                <option value="2">L</option>
-                <option value="3">XL</option>
-              </select>
-            </span>
-            <span class="quick-drop resizeWidth">
-              <select name="guiest_id4" id="guiest_id4" class="select-drop">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-              </select>
-            </span>
-            <%= render 'add_cart' %>
+            <%= render 'add_cart', product: @product %>
           </div>
         </div>
       </div>

@@ -4,6 +4,8 @@ RSpec.describe "Products", type: :feature do
   describe "商品詳細ページに関するテスト" do
     let!(:taxonomy) { create(:taxonomy, name: "Categories") }
     let!(:taxon) { create(:taxon, name: "Mugs", taxonomy: taxonomy, parent_id: taxonomy.root.id) }
+    let!(:stock_product) { create(:product_in_stock) }
+    let(:variant) { create(:variant) }
     let!(:product) { create(:product, name: "Mug_cup", price: "10.00", taxons: [taxon]) }
     let!(:related_product) { create(:product, name: "Mugmug1", price: "11.00", taxons: [taxon]) }
     let!(:related_product2) { create(:product, name: "Mugcup2", price: "12.00", taxons: [taxon]) }
@@ -42,10 +44,12 @@ RSpec.describe "Products", type: :feature do
       end
     end
 
-    it "カートへ入れた際に買い物カゴのページにアクセスする" do
-      click_on "カートへ入れる"
-      expect(page).to have_current_path potepan_cart_page_path
+    it "カート内に商品が入っていない状態のページのメッセージと買い物を続けるボタンを押すとTopへアクセスする" do
+      visit potepan_cart_path
       expect(page).to have_title "Cart Page - BIGBAG Store"
+      expect(page).to have_content "カートに追加された商品はありません。"
+      click_on "買い物を続ける"
+      expect(page).to have_current_path potepan_root_path
     end
 
     it "一覧ページへ戻るをクリックした際、カテゴリーページにアクセスする" do
@@ -59,7 +63,7 @@ RSpec.describe "Products", type: :feature do
       expect(page).not_to have_link "一覧ページへ戻る"
       expect(page).to have_link "TOPへ戻る"
       click_on "TOPへ戻る"
-      expect(page).to have_current_path potepan_path
+      expect(page).to have_current_path potepan_root_path
     end
   end
 end

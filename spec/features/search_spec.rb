@@ -6,7 +6,7 @@ RSpec.describe "Search", type: :feature do
     let!(:product2) { create(:product, name: "Rubybag", price: "11.00") }
 
     before do
-      visit potepan_path
+      visit potepan_root_path
     end
 
     it "無効な検索ワードを入力した場合" do
@@ -19,7 +19,7 @@ RSpec.describe "Search", type: :feature do
       expect(page).not_to have_content product2.display_price
     end
 
-    it "有効な検索ワードを入力した場合ヒットした製品が並ぶ" do
+    it "有効な検索ワードを入力した場合ヒットした商品が並ぶ" do
       fill_in 'Search…', with: 'bag'
       click_on '検索'
       expect(page).to have_content product2.name
