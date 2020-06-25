@@ -75,4 +75,5 @@ RSpec.configure do |config|
   # config.filter_gems_from_backtrace("gem name")
   # ↓以下を記述しておくといちいちFactryBotを打たなくてよくなるため
   config.include FactoryBot::Syntax::Methods
+  config.include OrderWalkthrough
 end

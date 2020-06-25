@@ -1,2 +1,2 @@
-<%= render "share/error_checkout_messages" if flash[:error].present? %>
+<%= render "error_checkout_messages" if flash[:error].present? %>
 <%= select_render(@order.state) %>
