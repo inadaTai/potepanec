@@ -5,9 +5,6 @@
   <span class="quick-drop resizeWidth" id="quantity-selectbox">
     <%= select_tag :quantity, options_for_select([*1..10], 1), id: "manyItems" %>
   </span>
-
-  <h5 class="text-danger" id="backorderable" hidden>只今、在庫がありません。ご注文は可能ですが、商品が入荷次第の配送になります。</h5>
-  <h5 class="text-danger" id="cantAddCart" hidden>在庫がない状態です。商品が入荷するまでお待ちください。</h5>
   <div class="btn-area">
     <%= button_tag class: "btn btn-primary btn-block", id: "btn-to-add-product" do %>
       カートへ入れる
