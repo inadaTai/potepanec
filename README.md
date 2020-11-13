@@ -146,6 +146,7 @@ bundler exec rake spree_auth:admin:create
 予め開発で使用する商品画像などは用意されていますが、こちらの管理画面から自分で商品を登録することもできます。
 ぜひ入力・データの出力など色々と試し、データベースの使い方などに慣れて行きましょう。
 
+
 こちらも参考にしてみてください。
 [Solidus の管理画面を操作してみましょう](https://potepan.gitbook.io/camp/before_camp)
 
